@@ -46,8 +46,8 @@ for i in response['Contents']:
                 ).show()
             
             #HV Ratio
-            df2 = all_data.withColumn("HV Ratio",all_data["High"]/all_data["Volume"])
-            df2.select('HV Ratio').show()
+            hv_data = all_data.withColumn("HV Ratio",all_data["High"]/all_data["Volume"])
+            hv_data.select('HV Ratio').show()
 
             #When was the highest stock price reached?
             all_data.orderBy(all_data["High"].desc()).head(1)[0][0]
