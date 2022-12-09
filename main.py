@@ -49,17 +49,17 @@ for i in response['Contents']:
             df2 = all_data.withColumn("HV Ratio",all_data["High"]/all_data["Volume"])
             df2.select('HV Ratio').show()
 
-            #On what day stock price was the highest?
+            #When was the highest stock price reached?
             all_data.orderBy(all_data["High"].desc()).head(1)[0][0]
             
-            #What is the average Closing price?
+            #What is the typical Closing price?
             all_data.select(mean("Close")).collect()[0][0]
             
-            #What is the maximum and minimum volume of stock traded?
+            #What is the maximum and minimum stock trading volume?
             all_data.select(max("Volume"),min("Volume")).show()
             
-            #For how many days the closing value was less than 60 dollars?
-            print(all_data.filter(all_data['Close'] < 60).count())
+            #How many days was the closing value less than $50?
+            print(all_data.filter(all_data['Close'] < 50).count())
             
             #Analysing all the data like mean, min, max of High, Low and Volume
             avg_close = all_data.select(mean("Close")).collect()[0][0]
