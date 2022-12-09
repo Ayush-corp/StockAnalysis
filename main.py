@@ -36,14 +36,14 @@ for i in response['Contents']:
 
             #Formatting the Dataset
 
-            result = all_data.describe()
-            result.select(result['summary'],
-                         format_number(result['Open'].cast('float'),2).alias('Open'),
-                         format_number(result['High'].cast('float'),2).alias('High'),
-                         format_number(result['Low'].cast('float'),2).alias('Low'),
-                         format_number(result['Close'].cast('float'),2).alias('Close'),
-                         result['Volume'].cast('int').alias('Volume')
-                ).show()
+            format_data = all_data.describe()
+            format_data.select(format_data['summary'],
+                          format_number(format_data['Open'].cast('float'),2).alias('Open'),
+                          format_number(format_data['High'].cast('float'),2).alias('High'),
+                          format_number(format_data['Low'].cast('float'),2).alias('Low'),
+                          format_number(format_data['Close'].cast('float'),2).alias('Close'),
+                          format_data['Volume'].cast('int').alias('Volume')
+                         ).show()
             
             #HV Ratio
             hv_data = all_data.withColumn("HV Ratio",all_data["High"]/all_data["Volume"])
